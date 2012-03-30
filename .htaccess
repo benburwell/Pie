@@ -17,3 +17,12 @@
 ################################################################################
 
 RewriteEngine On
+
+RewriteBase		/pie/
+
+RewriteRule		^static/(.+)$					/pie/static/$1									[L]
+RewriteRule		^$								/pie/view/assembler.php							[L]
+RewriteRule		^([a-zA-Z0-9]+)$				/pie/view/assembler.php?model=$1				[L]
+RewriteRule		^([a-zA-Z0-9]+)/([0-9]+)$		/pie/view/assembler.php?model=$1&id=$2			[L]
+RewriteRule		^([a-zA-Z0-9]+)/create$			/pie/view/assembler.php?model=$1&create=1		[L]
+RewriteRule		^([a-zA-Z0-9]+)/([0-9]+)/edit$	/pie/view/assembler.php?model=$1&id=$2&update=1	[L]

@@ -32,37 +32,97 @@
 
 class Page {
 
-	private $title;
+	private $title = "Application";
 	private $header_file;
 	private $content_file;
 	private $footer_file;
 	private $content_type = "text/html";
 	private $http_status = "200";
 	
-	public function __construct() {
+	private $error;
+	private $log;
+	
+	private $db;
+	
+	private $recordId;
+	private $model;
 		
+	public function __construct($db) {
+		$this->db = $db;
 	}
 	
 	public function setTitle($string) {
 		$this->title = $string;
 	}
 	
+	public function getTitle() {
+		return $this->title;
+	}
+	
 	public function setHeaderFile($filename) {
 		$this->header_file = $filename;
+	}
+	
+	public function getHeaderFile() {
+		return $this->header_file;
 	}
 	
 	public function setContentFile($filename) {
 		$this->content_file = $filename;
 	}
 	
+	public function getContentFile() {
+		return $this->content_file;
+	}
+	
 	public function setFooterFile($filename) {
 		$this->footer_file = $filename;
 	}
 	
+	public function getFooterFile() {
+		return $this->footer_file;
+	}
+	
+	public function setError($code) {
+		$this->error = $code;
+	}
+	
+	public function getError() {
+		return $this->error;
+	}
+	
+	public function setRecordId($id) {
+		$this->recordId = $id;
+	}
+	
+	public function getRecordId() {
+		return $this->recordId;
+	}
+	
+	public function setModel($model) {
+		$this->model = $model;
+	}
+	
+	public function getModel() {
+		return $this->model;
+	}
+	
+	function log($message) {
+		$this->log .= "\n".$message;
+	}
+	
 	public function write() {
+		
+		// use error page if indicated
+		if (isset($this->error)) $this->setContentFile('_error/record.php');
+		
+		// set http headers
 		header('Content-type: '.$this->content_type);
 		http_response_code($this->http_status);
+		
+		// include content
 		require_once($this->header_file);
+		echo "\n<!--\n".$this->log."\n-->\n";
 		require_once($this->content_file);
 		require_once($this->footer_file);
 	}

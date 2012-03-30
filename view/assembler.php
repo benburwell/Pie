@@ -32,26 +32,65 @@
 
 require_once('../core/init.php');
 
-$page = new Page();
+$page = new Page($db);
 
-$name = $_GET['model'];
-$id = $_GET['id'];
+// create local vars
+$model = $_GET['model'];																								$page->log("model=$model");
+$id = $_GET['id'];																										$page->log("id=$id");
+$create = ($_GET['create']==1)? true : false;																			$page->log("create=$create");
+$update = ($_GET['update']==1)? true : false;																			$page->log("update=$update");
 
-$page->setHeaderFile('_default/header.php');
-$page->setFooterFile('_default/footer.php');
+// set defaults
+$page->setHeaderFile(ROOT.'view/_default/header.php');																	$page->log("header set to default");
+$page->setFooterFile(ROOT.'view/_default/footer.php');																	$page->log("footer set to default");
+$page->setContentFile(ROOT.'view/_default/default.php');																$page->log("content set to default/default");
 
-if (file_exists($name.'/header.php')) $page->setHeaderFile($name.'/header.php');
-if (file_exists($name.'/footer.php')) $page->setFooterFile($name.'/footer.php');
-
-
-if ($id != null) {
-	$page->setContentFile('_default/record.php');
-	if (file_exists($name.'/record.php')) $page->setContentFile($name.'/record.php');
+if (isset($model) && !$db->modelExists($model)) {
+	$page->setError(ERROR_NOMODEL);																						$page->log("no model '$model'");
 } else {
-	$page->setContentFile('_default/default.php');
-	if (file_exists($name.'/default.php')) $page->setContentFile($name.'/default.php');
+	$page->setModel($model);																							$page->log("page model set to '$model'");
 }
 
+// override default header and footer if applicable
+if (file_exists(ROOT.'view/'.$model.'/header.php')) { $page->setHeaderFile(ROOT.'view/'.$model.'/header.php');			$page->log("header set to custom"); }
+if (file_exists(ROOT.'view/'.$model.'/footer.php')) { $page->setFooterFile(ROOT.'view/'.$model.'/footer.php');			$page->log("footer set to custom"); }
+
+
+if (is_numeric($id)) {																									$page->log("id is numeric");
+	
+	$page->setRecordId($id);
+	
+	// should custom view be used?
+	if (file_exists(ROOT.'view/'.$model.'/record.php')) {
+		$page->setContentFile(ROOT.'view/'.$model.'/record.php');														$page->log("content set to custom/record");
+	} else {
+		$page->setContentFile(ROOT.'view/_default/record.php');															$page->log("content set to default/record");
+	}
+	
+	
+} else {																												$page->log("id not numeric");
+	
+	// no id has been specified, use default view
+	if (file_exists(ROOT.'view/'.$model.'/default.php')) { $page->setContentFile(ROOT.'view/'.$model.'/default.php');	$page->log("content set to custom/default"); }
+}
+
+if ($create) {																											$page->log("page is create");
+	if (file_exists(ROOT.'view/'.$model.'/create.php')) {
+		$page->setContentFile(ROOT.'view/'.$model.'/create.php');														$page->log("content set to custom/create");
+	} else {
+		$page->setContentFile(ROOT.'view/_default/create.php');															$page->log("content set to default/create");
+	}
+}
+
+if ($update) {
+	if (file_exists(ROOT.'view/'.$model.'/update.php')) {																$page->log("page is update");
+		$page->setContentFile(ROOT.'view/'.$model.'/update.php');														$page->log("content set to custom/update");
+	} else {
+		$page->setContentFile(ROOT.'view/_default/update.php');															$page->log("content set to default/update");
+	}
+}
+																														$page->log("writing page . . .");
+// write page
 $page->write();
 
 ?>

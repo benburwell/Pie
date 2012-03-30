@@ -7,7 +7,7 @@
 
 	@file 		init.php
 	@version 	1.0.0b
-	@date 		2012-03-28 12:36:38 -0400 (Wed, 28 Mar 2012)
+	@date 		2012-03-30 16:14:38 -0400 (Fri, 30 Mar 2012)
 	@author 	Ben Burwell <bburwell1@gmail.com>
 
 */

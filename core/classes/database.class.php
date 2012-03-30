@@ -31,20 +31,26 @@
 ################################################################################
 
 class Database {
-
+	
+	// database link
 	private $dbc;
+	
+	// result of last query
 	private $result;
 	
+	// connection variables
 	private $host;
 	private $user;
 	private $pass;
-	private $name;
-	private $prefix;
+	private $name; // database name
+	private $prefix; // table prefix
 	
+	// Constructor
+	// Gets database settings and makes connection
 	public function __construct() {
 		
 		// access database config variables
-		require_once('../db.php');
+		require_once(ROOT.'core/db.php');
 		
 		// set fields
 		$this->host = DB_HOST;
@@ -57,11 +63,17 @@ class Database {
 		$this->connect();
 	}
 	
+	// Query
+	// Querys the database
+	// Returns the number of rows in the result
 	public function query($query) {
 		$this->result = @ mysqli_query($this->dbc, $query);
 		return @ mysqli_num_rows($this->result);
 	}
 	
+	// Delete
+	// Deletes record with id $id from model $model
+	// Returns result
 	public function delete($model, $id) {
 	
 		// ensure params are OK
@@ -70,6 +82,8 @@ class Database {
 		return $this->query("DELETE FROM ".$this->prefix.$model." WHERE ".$model."_id=".$id." LIMIT 1");
 	}
 	
+	// Create
+	// Creates a record of type $model using $params
 	public function create($model, $params) {
 		
 		// ensure model exists
@@ -117,15 +131,20 @@ class Database {
 		
 	}
 	
+	// Get
+	// Gets record $id of type $model
+	// Returns an array of the values
 	public function get($model, $id) {
 		// ensure id is a number
 		if (is_numeric($id)) {
-			$this->query("SELECT * FROM ".$this->prefix.$model." WHERE ".$model."_id=".$id." LIMIT 1");
+			$this->query("SELECT * FROM ".$this->prefix.$model." WHERE ".depluralize($model)."_id=".$id." LIMIT 1");
 			return $this->nextRecord();
 		}
 		return false;
 	}
 	
+	// Update
+	// Updates the values of $id of type $model to have the values of $params
 	public function update($model, $id, $params) {
 		
 		// ensure id is numeric
@@ -155,12 +174,18 @@ class Database {
 		
 	}
 	
+	// ModelExists
+	// Returns the boolean value of whether $model exists
 	public function modelExists($model) {
 		return ($this->query("SHOW TABLES IN ".$this->name." WHERE Tables_in_".$this->name."='".$this->prefix.$this->escape($model)."'") == 1)? true : false;
 	}
 	
+	// NextRecord
+	// Returns an array of key/value pairs for the subsequent record in $this->result
+	// Returns false if no more records
 	public function nextRecord() {
-		@ $record = mysqli_fetch_array($this->res);
+		@ $record = mysqli_fetch_array($this->result);
+		
 		if (is_array($record)) {
 			return $record;
 		} else {
@@ -168,16 +193,41 @@ class Database {
 		}
 	}
 	
+	// Connect
+	// Connects to the database
 	public function connect() {
 		$this->dbc = mysqli_connect($this->host, $this->user, $this->pass, $this->name);
 	}
 	
+	// Disconnect
+	// Closes the connection to the database
 	public function disconnect() {
 		mysqli_close($this->dbc);
 	}
 	
+	// Escape
+	// Escapes data in keeping with the charset of the database
+	// Returns the escaped value of $string
 	public function escape($string) {
 		return mysqli_real_escape_string($this->dbc, $string);
+	}
+	
+	// GetModels
+	// Returns an array of models in the database
+	public function getModels() {
+		
+		// get table list
+		$this->query("SHOW TABLES IN ".$this->name);
+		
+		$models = array();
+		
+		while ($record = $this->nextRecord()) {
+			if (substr($record[0], 0, strlen($this->prefix))==$this->prefix && substr($record[0], strlen($this->prefix), 1) != "_") {
+				$models[] = substr($record[0], strlen($this->prefix));
+			}
+		}
+		
+		return $models;
 	}
 	
 }

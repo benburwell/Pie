@@ -26,5 +26,18 @@
 	</head>
 	<body>
 		<header>
-			
+			<h1>Application</h1>
+			<nav>
+				<ul>
+					<?php
+					
+					echo '<li><a href="'.WEBROOT.'">Application</a></li>';
+					
+					$models = $this->db->getModels();
+					foreach ($models as $model) {
+						echo '<li><a href="'.WEBROOT.$model.'">'.capitalize($model).'</a></li>';
+					}
+					?>
+				</ul>
+			</nav>
 		</header>
