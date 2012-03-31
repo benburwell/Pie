@@ -146,6 +146,6 @@ define('ERROR_DBERROR', 'db');
 define('PERMISSION_CREATE', 1);
 define('PERMISSION_READ', 2);
 define('PERMISSION_UPDATE', 3);
-defin('PERMISSION_DELETE', 4);
+define('PERMISSION_DELETE', 4);
 
 ?>
