@@ -23,7 +23,7 @@
 		</div>
 		<footer>
 			<nav id="account">
-				<?php if (false/*$this->session->loggedIn()*/): ?>
+				<?php if ($this->session->loggedIn()): ?>
 					<a href="<?php echo WEBROOT; ?>logout">Logout</a>
 				<?php else: ?>
 					<a href="<?php echo WEBROOT; ?>login">Login</a>

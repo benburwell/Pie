@@ -193,6 +193,17 @@ class Database {
 		return ($this->query("SHOW TABLES IN ".$this->name." WHERE Tables_in_".$this->name."='".$this->prefix.$this->escape($model)."'") == 1)? true : false;
 	}
 	
+	// UserExists
+	// Returns the boolean valie of whether $username exists
+	public function userExists($username) {
+		if ($this->query("SELECT * FROM ".$this->prefix."_users WHERE username='".$username."'") == 1) {
+			$record = $this->nextRecord();
+			return $record['user_id'];
+		}
+		
+		return false;
+	}
+	
 	// NextRecord
 	// Returns an array of key/value pairs for the subsequent record in $this->result
 	// Returns false if no more records

@@ -35,13 +35,14 @@ $time_start = microtime(true);
 
 require_once('../core/init.php');
 
-$page = new Page($db);
+$page = new Page($db, $session);
 
 // create local vars
 $model = $_GET['model'];																								$page->log("model=$model");
 $id = $_GET['id'];																										$page->log("id=$id");
 $create = ($_GET['create']==1)? true : false;																			$page->log("create=$create");
 $update = ($_GET['update']==1)? true : false;																			$page->log("update=$update");
+$login = ($_GET['login']==1)? true : false;																				$page->log("login=$login");
 
 // set defaults
 $page->setHeaderFile(ROOT.'view/_default/header.php');																	$page->log("header set to default");
@@ -96,6 +97,9 @@ if ($update) {
 	}
 }
 
+if ($login) {
+	$page->setContentFile(ROOT.'view/_user/login.php');																	$page->log("content set to login");
+}
 																														$page->log("query count ".$db->getQueryCount());
 $time_end = microtime(true);
 $time = $time_end - $time_start;																						$page->log("page generated in ".$time);

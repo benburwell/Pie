@@ -43,12 +43,14 @@ class Page {
 	private $log;
 	
 	private $db;
+	private $session;
 	
 	private $recordId;
 	private $model;
-		
-	public function __construct($db) {
+	
+	public function __construct($db, $session) {
 		$this->db = $db;
+		$this->session = $session;
 	}
 	
 	public function setTitle($string) {

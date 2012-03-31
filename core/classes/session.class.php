@@ -34,10 +34,38 @@
 
 class Session {
 	
-	private $user;
+	private $db;
+	
+	public function __construct($db) {
+		$this->db = $db;
+	}
 	
 	public function loggedIn() {
-		return false;
+		return isset($_SESSION['user']);
+	}
+	
+	public function getUserName() {
+		return $_SESSION['user']->getUserName();
+	}
+	
+	public function flash($message) {
+		$_SESSION['messages'][] = $message;
+	}
+	
+	public function getMessages($delete=truee) {
+		$messages = $_SESSION['messages'];
+		
+		if ($delete) $_SESSION['messages'] = array();
+		
+		return $messages;
+	}
+	
+	public function login($username, $password) {
+		return $_SESSION['user'] = new User($this->db, 0, $username, $password);
+	}
+	
+	public function logout() {
+		$_SESSION['user'] = null;
 	}
 	
 }

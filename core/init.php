@@ -47,5 +47,6 @@ $db = new Database();
 
 // session initialization
 session_start();
+$session = new Session($db);
 
 ?>

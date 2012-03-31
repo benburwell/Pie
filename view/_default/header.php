@@ -51,4 +51,18 @@
 						?>
 				</nav>
 			</header>
+			<script type="text/javascript">
+			<?php
+				foreach ($this->session->getMessages() as $message) {
+					echo 'alert("'.addslashes($message).'");';
+				}
+			?>
+			</script>
 			<article>
+				<!--<div class="button-group right">
+					<?php if ($this->session->loggedIn()): ?>
+						<a href="<?php echo WEBROOT; ?>logout" class="button">Logout</a>
+					<?php else: ?>
+						<a href="<?php echo WEBROOT; ?>login" class="button">Login</a>
+					<?php endif; ?>
+				</div>-->

@@ -142,4 +142,10 @@ define('ERROR_NORECORD', 'norecord');
 define('ERROR_INTERNAL', 'internal');
 define('ERROR_DBERROR', 'db');
 
+// permission definitions
+define('PERMISSION_CREATE', 1);
+define('PERMISSION_READ', 2);
+define('PERMISSION_UPDATE', 3);
+defin('PERMISSION_DELETE', 4);
+
 ?>
