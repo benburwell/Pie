@@ -1,0 +1,10 @@
+* AutoMagic form elements / record display
+* change colors in gh-buttons.css
+* take out gh-buttons images
+* Make install script
+* Make Create view
+* Write documentation
+* Make user/group views
+* Implement session control
+* Make "compiler" to write views to file
+* Test extensively
