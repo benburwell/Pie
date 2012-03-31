@@ -10,7 +10,7 @@
 
 <h2>Philosophy</h2>
 
-<p>Pie was conceived to fill an apparent void in PHP frameworks. At Pie, we believe that things should &ldquo;just work.&rdquo; When you sit down to code, your time from concept to implementation should be minimized as much as possible. Other frameworks require configuration and coding after installation. With Pie, <b>coding is optional.</b></p>
+<p>Pie was conceived to fill an apparent void in PHP frameworks. At Pie, we believe that things should &ldquo;just work.&rdquo; When you sit down to code, your time from concept to implementation should be minimized as much as possible. Other frameworks require configuration and coding after installation. With Pie, you only code need to write code when you want to customize a layout or behavior. If you choose not to, it will work right out of the box.</p>
 
 <p>On the other hand, Pie does not have much built in functionality beyond the basics. Our belief is that complicated frameworks actually make coding less flexible. By providing only a basic feature set, we allow you to write your own code with greater freedom as you see fit.</p>
 
