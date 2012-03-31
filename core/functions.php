@@ -121,16 +121,6 @@ function createLinkForModel($model) {
 	return (file_exists(ROOT.'action/create_'.$model.'.php'))? WEBROOT.'action/create_'.$model.'.php' : WEBROOT.'action/create.php?_model='.$model;
 }
 
-function textInput($name, $value, $required=false) {
-	
-	$html  = '<tr><th';
-	$html .= ($required)? ' class="required"' : '';
-	$html .= '>'.sanitizeModel($name).'</th>';
-	$html .= '<td><input type="text" name="'.$name.'" value="'.$value.'" /></td></tr>';
-	
-	return $html;
-}
-
 function sanitizeModel($model) {
 	return capitalize(str_replace("_", "", str_replace("_id", "", $model)));
 }
@@ -147,5 +137,26 @@ define('PERMISSION_CREATE', 1);
 define('PERMISSION_READ', 2);
 define('PERMISSION_UPDATE', 3);
 define('PERMISSION_DELETE', 4);
+
+
+function writeRow($name, $value, $type, $flags, $edit=false) {
+	
+	echo '<tr><th';
+	echo ($flags & 1 && $edit)? ' class="required"' : '';
+	echo '><label for="input_'.$name.'">'.capitalize($name).'</label></td><td>';
+	
+	if ($edit) {
+		echo '<input type="text" name="'.$name.'" value="'.$value.'" id="input_'.$name.'" />';
+	} else {
+		echo $value;
+	}
+	
+	echo '</td>';
+	
+	echo '<td>type='.$type.';flags='.$flags.'</td>';
+	
+	echo '</tr>';
+	
+}
 
 ?>

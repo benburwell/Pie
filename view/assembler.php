@@ -31,7 +31,7 @@
 ################################################################################
 
 // start timer
-$time_start = microtime(true);
+define('START_TIME', microtime(true));
 
 require_once('../core/init.php');
 
@@ -101,10 +101,7 @@ if ($login) {
 	$page->setContentFile(ROOT.'view/_user/login.php');																	$page->log("content set to login");
 }
 																														$page->log("query count ".$db->getQueryCount());
-$time_end = microtime(true);
-$time = $time_end - $time_start;																						$page->log("page generated in ".$time);
-																														$page->log("writing page . . .");
 // write page
-$page->write();
+$page->write();																											$page->log("writing page . . .");
 
 ?>

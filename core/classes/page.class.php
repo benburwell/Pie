@@ -124,7 +124,9 @@ class Page {
 		
 		// include content
 		require_once($this->header_file);
-		echo "\n<!--\n".$this->log."\n-->\n";
+		$time = microtime(true) - START_TIME;
+		$this->log("page generated in ".round($time, 4)." seconds");
+		echo "\n<!--\nPage Generation Log".$this->log."\n-->\n";
 		require_once($this->content_file);
 		require_once($this->footer_file);
 	}

@@ -31,5 +31,12 @@
 			</nav>
 			<p>Copyright &copy; <?php echo date('Y'); ?> - Proudly Powered by <a href="http://pie.benburwell.com/">Pie</a></p>
 		</footer>
+		<script type="text/javascript">
+		<?php
+			foreach ($this->session->getMessages() as $message) {
+				echo 'alert("'.addslashes($message).'");';
+			}
+		?>
+		</script>
 	</body>
 </html>

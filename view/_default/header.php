@@ -51,13 +51,6 @@
 						?>
 				</nav>
 			</header>
-			<script type="text/javascript">
-			<?php
-				foreach ($this->session->getMessages() as $message) {
-					echo 'alert("'.addslashes($message).'");';
-				}
-			?>
-			</script>
 			<article>
 				<!--<div class="button-group right">
 					<?php if ($this->session->loggedIn()): ?>

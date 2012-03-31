@@ -61,7 +61,14 @@ class Session {
 	}
 	
 	public function login($username, $password) {
-		return $_SESSION['user'] = new User($this->db, 0, $username, $password);
+		$user = new User($this->db, 0, $username, $password);
+		
+		if ($user->checkPassword($password)) {
+			$_SESSION['user'] = $user;
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public function logout() {

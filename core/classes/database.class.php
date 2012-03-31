@@ -45,11 +45,13 @@ class Database {
 	private $name; // database name
 	private $prefix; // table prefix
 	
-	private $queryCount = 0;
+	private $fields;
 	
 	// Constructor
 	// Gets database settings and makes connection
 	public function __construct() {
+		
+		$_SESSION['queryCount'] = 0;
 		
 		// access database config variables
 		require_once(ROOT.'core/db.php');
@@ -69,15 +71,20 @@ class Database {
 	// Querys the database
 	// Returns the number of rows in the result
 	public function query($query) {
-		$this->result = @ mysqli_query($this->dbc, $query);
-		$this->queryCount++;
+		$query = $query;
+		$this->result = @ mysqli_query($this->dbc, ($query));
+		//$_SESSION['messages'][] = $query;
+		//$_SESSION['queryCount']++;
+		
+		$this->fields();
+		
 		return @ mysqli_num_rows($this->result);
 	}
 	
 	// Get QueryCount
 	// Returns the number of querys that have been executed
 	public function getQueryCount() {
-		return $this->queryCount;
+		return $_SESSION['queryCount'];
 	}
 	
 	// Delete
@@ -267,6 +274,47 @@ class Database {
 		
 		return $fields;
 		
+	}
+	
+	private function fields() {
+		//$_SESSION['messages'][] = 'getting fields…';
+		$fields = array();
+		
+		$i = 0;
+		
+		while ($field = mysqli_fetch_field($this->result)) {
+			$fields[$i]['type'] = $field->type;
+			$fields[$i]['flags'] = $field->flags;
+			//$_SESSION['messages'][] = $fields[$i]['type'].' '.$fields[$i]['flags'];
+			$i++;
+		}
+		
+		$this->fields = $fields;
+		
+	}
+	
+	// fieldTypes
+	// returns an array of field types
+	public function getFieldTypes() {
+				
+		$types = array();
+			
+		foreach ($this->fields as $id) {
+			$types[] = $this->field[$id]['type'];
+		}
+		
+		return $types;
+	}
+	
+	// get flags
+	// returns an array of flags
+	public function getFlags() {
+						
+		while ($data = mysqli_fetch_field($this->result)) {
+			$flags[] = 1;//$data->flags;
+		}
+		
+		return $flags;
 	}
 }
 

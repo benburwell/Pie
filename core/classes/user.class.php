@@ -47,19 +47,25 @@ class User {
 		
 		$this->db = $db;
 		
+		$password = md5($password);
+		
 		if ($id===0) {
-			if ($this->db->query('SELECT * FROM '.DB_PREFIX.'_users WHERE username="'.$username.'" AND password="'.md5($password).'"') === 1) {
+			if ($this->db->query('SELECT * FROM '.DB_PREFIX.'_users WHERE name="'.$username.'" AND pass="'.$password.'"') === 1) {
 				
 				$record = $this->db->nextRecord();
 				
 				$this->user_id = $record['user_id'];
-				$this->username = $record['username'];
+				$this->username = $record['name'];
 				$this->email = $record['email'];
-				$this->password = $record['password'];
+				$this->password = $record['pass'];
 				$this->password_reset_key = $record['password_reset_key'];
 				$this->password_reset_expires = $record['password_reset_expires'];
 				
+				$this->db->query("SELECT group_id FROM ".DB_PREFIX."_groups__users WHERE user_id=".$this->user_id);
 				
+				while ($record = $this->db->nextRecord()) {
+					$groups[] = $record[0];
+				}
 				
 				return true;
 			}
@@ -68,9 +74,9 @@ class User {
 			$record = $this->db->get('_users', $id);
 			
 			$this->user_id = $record['user_id'];
-			$this->username = $record['username'];
+			$this->username = $record['name'];
 			$this->email = $record['email'];
-			$this->password = $record['password'];
+			$this->password = $record['pass'];
 			$this->password_reset_key = $record['password_reset_key'];
 			$this->password_reset_expires = $record['password_reset_expires'];
 			
@@ -86,13 +92,14 @@ class User {
 	}
 	
 	public function checkPassword($password) {
-		return ($password === $this->password);
+		
+		return (md5($password) === $this->password);
 	}
 	
 	public function setPassword($password, $confirm) {
 				
 		if ($password === $confirm) {
-			return $this->db->update('_users', $this->user_id, array('password' => md5($password)));
+			return $this->db->update('_users', $this->user_id, array('pass' => md5($password)));
 		}
 		
 		return false;
