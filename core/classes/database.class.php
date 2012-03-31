@@ -165,7 +165,7 @@ class Database {
 		$q = "UPDATE ".$this->prefix.$model." SET ";
 		
 		// initialize counter vars
-		$i = 0;
+		$i = 1;
 		$num = count($params);
 		
 		// list updated vars
@@ -178,8 +178,8 @@ class Database {
 		}
 		
 		// finish query string
-		$q .= " WHERE ".$model."_id=".$id." LIMIT 1";
-		
+		$q .= " WHERE ".depluralize($model)."_id=".$id." LIMIT 1";
+				
 		// finally run the query
 		return $this->query($q);
 		
@@ -241,6 +241,20 @@ class Database {
 		return $models;
 	}
 	
+	// GetFields
+	// returns an array of fields in $model
+	public function getFields($model) {
+		$this->query("SHOW FIELDS FROM ".$this->prefix.$model);
+		
+		$fields = array();
+		
+		while ($record = $this->nextRecord()) {
+			$fields[] = $record;
+		}
+		
+		return $fields;
+		
+	}
 }
 
 ?>

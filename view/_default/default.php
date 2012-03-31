@@ -9,7 +9,7 @@ if ($this->db->get($this->getModel()) > 0) {
 		
 		echo '<td>'.$record[1].'</td>';
 
-		echo '<td class="actions"><div class="button-group"><a href="'.WEBROOT.$this->getModel().'/'.$record[0].'/edit" class="button">Edit</a> ';
+		echo '<td class="actions"><div class="button-group">';
 		echo '<a href="#" class="button danger" onclick="verifyUrl(\''.deleteLinkForModel($this->getModel()).'&_id='.$record[0].'\');">Delete</a> ';
 		echo '<a href="'.WEBROOT.$this->getModel().'/'.$record[0].'" class="button primary">View</a></div></td>';
 		

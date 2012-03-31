@@ -103,16 +103,39 @@ function capitalize($string) {
 	return $firstletter.substr($string, 1);
 }
 
-function editLinkForModel($model) {
-	return (file_exists(ROOT.'action/update_'.$model.'.php'))? WEBROOT.'action/update_'.$model.'.php' : WEBROOT.'action/update.php?_model='.$model;
+function editLinkForModel($model, $id=true) {
+	if ($id===true)
+		return (file_exists(ROOT.'action/update_'.$model.'.php'))? WEBROOT.'action/update_'.$model.'.php' : WEBROOT.'action/update.php?_model='.$model;
+	else
+		return (file_exists(ROOT.'action/update_'.$model.'.php'))? WEBROOT.'action/update_'.$model.'.php?_id='.$id : WEBROOT.'action/update.php?_model='.$model.'&_id='.$id;
 }
 
-function deleteLinkForModel($model) {
-	return (file_exists(ROOT.'action/delete_'.$model.'.php'))? WEBROOT.'action/delete_'.$model.'.php' : WEBROOT.'action/delete.php?_model='.$model;
+function deleteLinkForModel($model, $id=true) {
+	if ($id===true)
+		return (file_exists(ROOT.'action/delete_'.$model.'.php'))? WEBROOT.'action/delete_'.$model.'.php' : WEBROOT.'action/delete.php?_model='.$model;
+	else
+		return (file_exists(ROOT.'action/delete_'.$model.'.php'))? WEBROOT.'action/delete_'.$model.'.php?_id='.$id : WEBROOT.'action/delete.php?_model='.$model.'&_id='.$id;
 }
 
-function createLinkForModel($model) {
-	return (file_exists(ROOT.'action/ucreate_'.$model.'.php'))? WEBROOT.'action/create_'.$model.'.php' : WEBROOT.'action/create.php?_model='.$model;
+function createLinkForModel($model, $id=true) {
+	if ($id===true)
+		return (file_exists(ROOT.'action/ucreate_'.$model.'.php'))? WEBROOT.'action/create_'.$model.'.php' : WEBROOT.'action/create.php?_model='.$model;
+	else
+		return (file_exists(ROOT.'action/ucreate_'.$model.'.php'))? WEBROOT.'action/create_'.$model.'.php?_id='.$id : WEBROOT.'action/create.php?_model='.$model.'&_id='.$id;
+}
+
+function textInput($name, $value, $required=false) {
+	
+	$html  = '<tr><th';
+	$html .= ($required)? ' class="required"' : '';
+	$html .= '>'.sanitizeModel($name).'</th>';
+	$html .= '<td><input type="text" name="'.$name.'" value="'.$value.'" /></td></tr>';
+	
+	return $html;
+}
+
+function sanitizeModel($model) {
+	return capitalize(str_replace("_", "", str_replace("_id", "", $model)));
 }
 
 // error definitions

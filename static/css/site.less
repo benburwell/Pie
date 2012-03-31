@@ -26,6 +26,8 @@
 @width: 800px;
 @side-padding: 50px;
 
+@font: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
 * {
 	padding: 0;
 	margin: 0;
@@ -33,17 +35,18 @@
 
 html {
 	background-color: @gray;
-	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	font-family: @font;
 }
 
 a {
 	color: @red;
-	text-decoration: underline;
+	text-decoration: none;
 	//border-bottom: 1px solid @red;
 	
 	&:hover {
 		//border: none;
-		text-decoration: none;
+		//text-decoration: none;
+		color: darken(@red, 10%);
 	}
 }
 
@@ -62,7 +65,7 @@ nav#account {
 	border-radius: 10px;
 	background-color: #ffffff;
 	padding: 0px;
-	font-weight: 300;
+	font-weight: 200;
 	width: @width;
 	margin-top: 10px;
 	margin-left: auto;
@@ -96,7 +99,7 @@ header {
 		text-shadow: 0 -2px #000000;
 		
 		&:hover {
-			border-bottom: 15px solid #ffffff;
+			color: #ffffff;
 		}
 		
 	}
@@ -123,8 +126,9 @@ header {
 				text-decoration: none;
 				
 				&:hover {
-					border: none;
+					//border: none;
 					background-color: darken(@red, 10%);
+					color: #ffffff;
 				}				
 				
 			}
@@ -144,20 +148,52 @@ article {
 	
 	h1 {
 		font-size: 24px;
-		margin-bottom: 10px;
+		margin-bottom: 20px;
+		margin-top: 10px;
+		border-bottom: 1px solid @gray;
+		padding-bottom: 5px;
+	}
+	
+	h2 {
+		font-size: 18px;
+		margin-top: 20px;
+		margin-bottom: 5px;
+	}
+	
+	code {
+		font-family: monospace;
+		font-size: 13px;
+	}
+	
+	ul {
+		margin-left: 20px;
+		margin-right: 20px;
+		list-style-type: square;
+		//border-right: 5px solid @gray;
+		border-left: 5px solid @gray;
+		background-color: lighten(@gray, 10%);
+		padding: 10px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		
+		li {
+			padding-right: 20px;
+			margin-left: 20px;
+		}
+		
 	}
 	
 	p {
 		margin-bottom: 20px;
 	}
 	
-	a.right {
+	a.right, div.right {
 		float: right;
 	}
 	
 	table {
-		margin-top: 50px;
-		margin-bottom: 50px;
+		margin-top: 20px;
+		margin-bottom: 20px;
 		border: 1px solid @gray;
 		border-collapse: collapse;
 		
@@ -174,6 +210,7 @@ article {
 		}
 		
 		&.linktable {
+			
 			border: none;
 			td {
 				border: none;
@@ -181,16 +218,59 @@ article {
 			
 			td.actions {
 				width: 160px;
+				text-align: right;
 			}
 			
 			tr {
 				border-bottom: 1px solid @gray;
 				border-top: 1px solid @gray;
+			}
+		}
+		
+		&.recordtable {
+			border: none;
+			th {
+				width: 100px;
+				background-color: #ffffff;
+				color: #000000;
+				font-weight: 200;
+				text-align: right;
+				border: none;
 				
-				&.actions {
-					text-align: right;
+				&.required {
+					font-weight: bold;
+				}
+				
+				&.required:before {
+					content: '* ';
+					color: @red;
+					font-weight: bold;
+				}
+				
+			}
+			td {
+				border: none;
+			}
+			
+			input {
+				font-size: 15px;
+				font-family: @font;
+				font-weight: 200;
+				padding: 5px;
+				
+				&[type=text] {
+					width: 500px;
+					margin-bottom: 10px;
+				}
+				
+				&[type=checkbox] {
+					width: 50px;
+					height: 50px;
+					margin: 0;
+					padding: 0;
 				}
 			}
+			
 		}
 		
 	}
@@ -207,4 +287,5 @@ footer {
 	margin-left: auto;
 	margin-right: auto;
 	text-shadow: 0 1px #ffffff;
+	margin-bottom: 50px;
 }

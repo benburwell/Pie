@@ -32,12 +32,14 @@
 
 require_once('../core/init.php');
 
-$model = $_POST['_model'];
-$id = $_POST['_id'];
+$model = $_GET['_model'];
+$id = $_GET['_id'];
 
 // quit if no model provided or id not numeric
-if (!$db->modelExists($model) || !is_numeric($id)) goToReferer();
-
+if (!$db->modelExists($model) || !is_numeric($id)) {
+	header("Location: ".WEBROOT.$model.'/'.$id.'/edit');
+	exit();
+}
 $params = array();
 
 foreach ($_POST as $key => $value) {
@@ -48,6 +50,6 @@ foreach ($_POST as $key => $value) {
 
 $db->update($model, $id, $params);
 
-goToReferer();
+header("Location: ".WEBROOT.$model.'/'.$id);
 
 ?>
