@@ -1,8 +1,7 @@
-* AutoMagic form elements / record display
+* AutoMagic form elements / record / create display
 * change colors in gh-buttons.css
 * take out gh-buttons images
 * Make install script
-* Make Create view
 * Write documentation
 * Make user/group views
 * Implement session control
