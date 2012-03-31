@@ -37,6 +37,6 @@ $id = $_GET['_id'];
 
 $db->delete($model, $id);
 
-goToReferer();
+header("Location: ".WEBROOT.$model);
 
 ?>

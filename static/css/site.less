@@ -93,7 +93,7 @@ header {
 		background: -webkit-gradient(linear, left top, left bottom, from(@blue), to(darken(@blue, 15%)));
 		background: -moz-linear-gradient(top,  @blue,  darken(@blue, 150%));
 		
-		text-shadow: 0 -2px #000000;
+		text-shadow: 0 -2px 1px #000000;
 		
 		&:hover {
 			color: #ffffff;
@@ -234,6 +234,7 @@ article {
 				font-weight: 200;
 				text-align: right;
 				border: none;
+				vertical-align: top;
 				
 				&.required {
 					font-weight: bold;
@@ -249,26 +250,46 @@ article {
 			td {
 				border: none;
 			}
-			
-			input {
-				font-size: 15px;
-				font-family: @font;
-				font-weight: 200;
-				padding: 5px;
-				
-				&[type=text], &[type=password] {
-					width: 500px;
-					margin-bottom: 10px;
-				}
-				
-				&[type=checkbox] {
-					width: 50px;
-					height: 50px;
-					margin: 0;
-					padding: 0;
-				}
+		}
+		
+		/*&.createtable {
+			border: none;
+			td, th {
+				border: none;
 			}
 			
+			tr {
+				border-bottom: 1px solid @gray;
+				border-top: 1px solid @gray;
+			}
+		}*/
+		
+		input {
+			font-size: 15px;
+			font-family: @font;
+			font-weight: 200;
+			padding: 5px;
+			
+			&[type=text], &[type=password] {
+				width: 500px;
+				margin-bottom: 10px;
+			}
+			
+			&[type=checkbox] {
+				//width: 50px;
+				//height: 50px;
+				margin: 0;
+				padding: 20px;
+			}
+		}
+		
+		textarea {
+			width: 500px;
+			height: 150px;
+			padding: 5px;
+			font-family: @font;
+			font-size: 15px;
+			font-weight: 200;
 		}
 		
 	}

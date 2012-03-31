@@ -146,15 +146,27 @@ function writeRow($name, $value, $type, $flags, $edit=false) {
 	echo '><label for="input_'.$name.'">'.capitalize($name).'</label></td><td>';
 	
 	if ($edit) {
-		echo '<input type="text" name="'.$name.'" value="'.$value.'" id="input_'.$name.'" />';
+		if ($type==1) { // checkbox
+			if ($value != 0) {
+				echo '<input type="hidden" name="'.$name.'" value="0" />';
+			}
+			echo '<input type="checkbox" name="'.$name.'" value="1" id="input_'.$name.'"';
+			echo ($value==1)? ' checked="checked"' : '';
+			echo ' />';
+		} else if ($type==252) { // text area
+			echo '<textarea name="'.$name.'">'.$value.'</textarea>';
+		} else {
+			echo '<input type="text" name="'.$name.'" value="'.$value.'" id="input_'.$name.'" />';
+		}
 	} else {
-		echo $value;
+		if ($type==1) {
+			echo ($value==1)? 'Yes' : 'No';
+		} else {
+			echo $value;
+		}
 	}
 	
-	echo '</td>';
-	
-	echo '<td>type='.$type.';flags='.$flags.'</td>';
-	
+	echo '</td>';	
 	echo '</tr>';
 	
 }

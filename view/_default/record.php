@@ -4,6 +4,7 @@ if ($record = $this->db->get($this->getModel(), $this->getRecordId())) {
 	
 	echo '<div class="button-group right">';
 	echo '<a href="'.WEBROOT.$this->getModel().'" class="button big">&laquo; '.capitalize($this->getModel()).'</a>';
+	echo '<a href="#" class="button danger big" onclick="verifyUrl(\''.deleteLinkForModel($this->getModel()).'&_id='.$record[0].'\');">Delete</a> ';
 	echo '<a href="'.WEBROOT.$this->getModel().'/'.$record[0].'/edit" class="button big primary">Edit</a>';
 	echo '</div>';
 	echo '<h1>'.depluralize(capitalize($this->getModel())).': '.$record[1].'</h1>';

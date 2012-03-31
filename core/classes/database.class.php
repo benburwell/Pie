@@ -277,43 +277,56 @@ class Database {
 	}
 	
 	private function fields() {
-		//$_SESSION['messages'][] = 'getting fields…';
 		$fields = array();
 		
 		$i = 0;
 		
+		if ($this->result === true) return false;
+		
 		while ($field = mysqli_fetch_field($this->result)) {
 			$fields[$i]['type'] = $field->type;
 			$fields[$i]['flags'] = $field->flags;
-			//$_SESSION['messages'][] = $fields[$i]['type'].' '.$fields[$i]['flags'];
 			$i++;
 		}
 		
-		$this->fields = $fields;
-		
+		$this->fields = $fields;		
 	}
 	
 	// fieldTypes
 	// returns an array of field types
-	public function getFieldTypes() {
-				
-		$types = array();
-			
-		foreach ($this->fields as $id) {
-			$types[] = $this->field[$id]['type'];
+	public function getFieldTypes($model = false) {
+		
+		if ($model !== false) {
+			$this->query("SELECT * FROM ".$this->prefix.$model." LIMIT 1");
 		}
 		
+		$types = array();
+		
+		foreach ($this->fields as $id => $unimportant) {
+			foreach ($this->fields[$id] as $key => $value) {
+				if ($key=='type') $types[] = $value;
+			}
+		}
+				
 		return $types;
 	}
 	
 	// get flags
 	// returns an array of flags
-	public function getFlags() {
-						
-		while ($data = mysqli_fetch_field($this->result)) {
-			$flags[] = 1;//$data->flags;
+	public function getFlags($model = false) {
+		
+		if ($model !== false) {
+			$this->query("SELECT * FROM ".$this->prefix.$model." LIMIT 1");
 		}
 		
+		$flags = array();
+		
+		foreach ($this->fields as $id => $unimportant) {
+			foreach ($this->fields[$id] as $key => $value) {
+				if ($key=='flags') $flags[] = $value;
+			}
+		}
+				
 		return $flags;
 	}
 }
