@@ -23,10 +23,10 @@
 		</div>
 		<footer>
 			<nav id="account">
-				<?php if (true/*$this->session->loggedIn()*/): ?>
+				<?php if (false/*$this->session->loggedIn()*/): ?>
 					<a href="<?php echo WEBROOT; ?>logout">Logout</a>
 				<?php else: ?>
-					<a href="<?php echo WEBROOT; ?>login">Logout</a>
+					<a href="<?php echo WEBROOT; ?>login">Login</a>
 				<?php endif; ?>
 			</nav>
 			<p>Copyright &copy; <?php echo date('Y'); ?> - Proudly Powered by <a href="http://pie.benburwell.com/">Pie</a></p>
