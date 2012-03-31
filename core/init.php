@@ -36,14 +36,14 @@ require_once('classes/page.class.php');
 require_once('classes/user.class.php');
 require_once('classes/session.class.php');
 
-// bring in functions
-require_once('functions.php');
-
 // database settings
 require_once('db.php');
 
 // database initialization
 $db = new Database();
+
+// bring in functions
+require_once('functions.php');
 
 // session initialization
 session_start();

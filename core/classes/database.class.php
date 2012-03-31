@@ -281,7 +281,7 @@ class Database {
 		
 		$i = 0;
 		
-		if ($this->result === true) return false;
+		if ($this->result === false || $this->result === true) return false;
 		
 		while ($field = mysqli_fetch_field($this->result)) {
 			$fields[$i]['type'] = $field->type;

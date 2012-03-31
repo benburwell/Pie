@@ -141,6 +141,21 @@ define('PERMISSION_DELETE', 4);
 
 function writeRow($name, $value, $type, $flags, $edit=false) {
 	
+	global $db;
+	
+	if (preg_match('/_id/', $name)) {
+		$table = substr($name, 0, strlen($name)-3).'s';
+		$field = $name;
+		$name = substr($name, 0, strlen($name)-3);
+		$record = $db->query("SELECT * FROM ".DB_PREFIX.$table);
+		$options = array();
+		while ($record = $db->nextRecord()) {
+			$options[$record[0]] = $record[1];
+		}
+		$type=1000;
+	}
+	
+	
 	echo '<tr><th';
 	echo ($flags & 1 && $edit)? ' class="required"' : '';
 	echo '><label for="input_'.$name.'">'.capitalize($name).'</label></td><td>';
@@ -155,12 +170,21 @@ function writeRow($name, $value, $type, $flags, $edit=false) {
 			echo ' />';
 		} else if ($type==252) { // text area
 			echo '<textarea name="'.$name.'">'.$value.'</textarea>';
+		} else if ($type==1000) { // model
+			echo '<select name="'.$field.'">';
+			foreach ($options as $k => $v) {
+				echo '<option value="'.$k.'"';
+				echo ($k==$value)? ' selected="selected"' : '';
+				echo '>'.$v.'</option>';
+			}
 		} else {
 			echo '<input type="text" name="'.$name.'" value="'.$value.'" id="input_'.$name.'" />';
 		}
 	} else {
 		if ($type==1) {
 			echo ($value==1)? 'Yes' : 'No';
+		} else if ($type==1000) {
+			echo $options[$value];
 		} else {
 			echo $value;
 		}
