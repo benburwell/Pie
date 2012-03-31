@@ -22,6 +22,13 @@
 			</article>
 		</div>
 		<footer>
+			<nav id="account">
+				<?php if (true/*$this->session->loggedIn()*/): ?>
+					<a href="<?php echo WEBROOT; ?>logout">Logout</a>
+				<?php else: ?>
+					<a href="<?php echo WEBROOT; ?>login">Logout</a>
+				<?php endif; ?>
+			</nav>
 			<p>Copyright &copy; <?php echo date('Y'); ?> - Proudly Powered by <a href="http://pie.benburwell.com/">Pie</a></p>
 		</footer>
 	</body>

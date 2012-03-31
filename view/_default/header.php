@@ -28,13 +28,6 @@
 		<script type="text/javascript" src="<?php echo WEBROOT; ?>static/js/site.js"></script>
 	</head>
 	<body>
-		<nav id="account">
-			<?php if (true/*$this->session->loggedIn()*/): ?>
-				<a href="<?php echo WEBROOT; ?>logout">Logout</a>
-			<?php else: ?>
-				<a href="<?php echo WEBROOT; ?>login">Logout</a>
-			<?php endif; ?>
-		</nav>
 		<div id="main">
 			<header>
 				<h1><a href="<?php echo WEBROOT; ?>"><?php echo SITE; ?></a></h1>
