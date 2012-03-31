@@ -17,6 +17,8 @@
 $error = $this->getError();
 $msg = "";
 
+echo "<h1>Pie Error!</h1>";
+
 switch ($error) {
 
 	case ERROR_UNAUTHORIZED:
@@ -43,6 +45,6 @@ switch ($error) {
 		$msg = "Unexpected error code encountered. See the application log for more details.";
 }
 
-echo "<p>$msg</p>";
+echo "<p>Unfortunately, Pie has encountered an error. The error code was: <code>$msg</code></p>";
 
 ?>

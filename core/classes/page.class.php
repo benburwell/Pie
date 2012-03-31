@@ -114,7 +114,7 @@ class Page {
 	public function write() {
 		
 		// use error page if indicated
-		if (isset($this->error)) $this->setContentFile('_error/record.php');
+		if (isset($this->error)) $this->setContentFile(ROOT.'view/_error/record.php');
 		
 		// set http headers
 		header('Content-type: '.$this->content_type);
