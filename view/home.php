@@ -15,7 +15,7 @@
 <p>On the other hand, Pie does not have much built in functionality beyond the basics. Our belief is that complicated frameworks actually make coding less flexible. By providing only a basic feature set, we allow you to write your own code with greater freedom as you see fit.</p>
 
 <h2>Contributing to Pie</h2>
-<p>Pie is open source software, licensed under the Apache 2.0 license. As such, Pie welcomes contributions in the form of feature requests, bug reports/fixes, and other code contributions. If you would like to join the project, contact <a href="http://www.benburwell.com/">Ben Burwell</a> (project lead).</p>
+<p>Pie is open source software, licensed under the Apache 2.0 license. As such, Pie welcomes contributions in the form of feature requests, bug reports/fixes, and other code contributions. If you would like to join the project, contact <a href="http://www.benburwell.com/">Ben Burwell</a> (project lead) or check out <a href="http://github.com/bburwell/Pie">Pie on GitHub</a>.</p>
 
 <h2>Acknowledgements</h2>
 <p>The Pie theme uses Nicolas Gallagher&rsquo;s <a href="http://nicolasgallagher.com/lab/css3-github-buttons/">CSS3 GitHub buttons</a>.</p>
