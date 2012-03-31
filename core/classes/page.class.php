@@ -32,7 +32,7 @@
 
 class Page {
 
-	private $title = "Application";
+	private $title = SITE;
 	private $header_file;
 	private $content_file;
 	private $footer_file;

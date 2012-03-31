@@ -23,21 +23,38 @@
 <html>
 	<head>
 		<title><?php echo $this->title; ?></title>
+		<link rel="stylesheet" type="text/css" href="<?php echo WEBROOT; ?>static/css/site.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="<?php echo WEBROOT; ?>static/css/gh-buttons.css" media="all" />
+		<script type="text/javascript" src="<?php echo WEBROOT; ?>static/js/site.js"></script>
 	</head>
 	<body>
-		<header>
-			<h1>Application</h1>
-			<nav>
-				<ul>
-					<?php
-					
-					echo '<li><a href="'.WEBROOT.'">Application</a></li>';
-					
-					$models = $this->db->getModels();
-					foreach ($models as $model) {
-						echo '<li><a href="'.WEBROOT.$model.'">'.capitalize($model).'</a></li>';
-					}
-					?>
-				</ul>
-			</nav>
-		</header>
+		<nav id="account">
+			<?php if (true/*$this->session->loggedIn()*/): ?>
+				<a href="<?php echo WEBROOT; ?>logout">Logout</a>
+			<?php else: ?>
+				<a href="<?php echo WEBROOT; ?>login">Logout</a>
+			<?php endif; ?>
+		</nav>
+		<div id="main">
+			<header>
+				<h1><a href="<?php echo WEBROOT; ?>"><?php echo SITE; ?></a></h1>
+				<nav>
+						<?php
+						
+						$models = $this->db->getModels();
+						
+						if (count($models) > 0) {
+							
+							echo '<ul>';
+							
+							foreach ($models as $model) {
+								echo '<li><a href="'.WEBROOT.$model.'">'.capitalize($model).'</a></li>';
+							}
+							
+							echo '</ul>';
+						}
+						
+						?>
+				</nav>
+			</header>
+			<article>

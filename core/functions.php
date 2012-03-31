@@ -103,6 +103,18 @@ function capitalize($string) {
 	return $firstletter.substr($string, 1);
 }
 
+function editLinkForModel($model) {
+	return (file_exists(ROOT.'action/update_'.$model.'.php'))? WEBROOT.'action/update_'.$model.'.php' : WEBROOT.'action/update.php?_model='.$model;
+}
+
+function deleteLinkForModel($model) {
+	return (file_exists(ROOT.'action/delete_'.$model.'.php'))? WEBROOT.'action/delete_'.$model.'.php' : WEBROOT.'action/delete.php?_model='.$model;
+}
+
+function createLinkForModel($model) {
+	return (file_exists(ROOT.'action/ucreate_'.$model.'.php'))? WEBROOT.'action/create_'.$model.'.php' : WEBROOT.'action/create.php?_model='.$model;
+}
+
 // error definitions
 define('ERROR_UNAUTHORIZED', 'unauthorized');
 define('ERROR_NOMODEL', 'nomodel');
@@ -110,7 +122,4 @@ define('ERROR_NORECORD', 'norecord');
 define('ERROR_INTERNAL', 'internal');
 define('ERROR_DBERROR', 'db');
 
-// site root
-define('ROOT', '/home/davebu5/public_html/_domains/com.benburwell.stat/pie/');
-define('WEBROOT', '/pie/');
 ?>

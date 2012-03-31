@@ -32,11 +32,8 @@
 
 require_once('../core/init.php');
 
-$model = $_POST['_model'];
-$id = $_POST['_id'];
-
-// quit if no model provided or id not numeric
-if (!$db->modelExists($model) || !is_numeric($id)) goToReferer();
+$model = $_GET['_model'];
+$id = $_GET['_id'];
 
 $db->delete($model, $id);
 

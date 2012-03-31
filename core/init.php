@@ -33,17 +33,14 @@
 // bring in all required classes
 require_once('classes/database.class.php');
 require_once('classes/page.class.php');
-require_once('classes/settings.class.php');
 require_once('classes/user.class.php');
+require_once('classes/session.class.php');
 
 // bring in functions
 require_once('functions.php');
 
 // database settings
 require_once('db.php');
-
-// site settings
-$settings = new Settings();
 
 // database initialization
 $db = new Database();

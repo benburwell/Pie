@@ -30,6 +30,9 @@
 ##                                                                            ##
 ################################################################################
 
+// start timer
+$time_start = microtime(true);
+
 require_once('../core/init.php');
 
 $page = new Page($db);
@@ -43,12 +46,15 @@ $update = ($_GET['update']==1)? true : false;																			$page->log("upda
 // set defaults
 $page->setHeaderFile(ROOT.'view/_default/header.php');																	$page->log("header set to default");
 $page->setFooterFile(ROOT.'view/_default/footer.php');																	$page->log("footer set to default");
-$page->setContentFile(ROOT.'view/_default/default.php');																$page->log("content set to default/default");
+$page->setContentFile(ROOT.'view/home.php');																			$page->log("content set to home");
 
 if (isset($model) && !$db->modelExists($model)) {
 	$page->setError(ERROR_NOMODEL);																						$page->log("no model '$model'");
 } else {
-	$page->setModel($model);																							$page->log("page model set to '$model'");
+	if ($model != "") {
+		$page->setModel($model);																						$page->log("page model set to '$model'");
+		$page->setContentFile(ROOT.'view/_default/default.php');														$page->log("content set to default/default");
+	}
 }
 
 // override default header and footer if applicable
@@ -89,6 +95,10 @@ if ($update) {
 		$page->setContentFile(ROOT.'view/_default/update.php');															$page->log("content set to default/update");
 	}
 }
+
+																														$page->log("query count ".$db->getQueryCount());
+$time_end = microtime(true);
+$time = $time_end - $time_start;																						$page->log("page generated in ".$time);
 																														$page->log("writing page . . .");
 // write page
 $page->write();

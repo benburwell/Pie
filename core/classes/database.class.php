@@ -45,6 +45,8 @@ class Database {
 	private $name; // database name
 	private $prefix; // table prefix
 	
+	private $queryCount = 0;
+	
 	// Constructor
 	// Gets database settings and makes connection
 	public function __construct() {
@@ -68,7 +70,14 @@ class Database {
 	// Returns the number of rows in the result
 	public function query($query) {
 		$this->result = @ mysqli_query($this->dbc, $query);
+		$this->queryCount++;
 		return @ mysqli_num_rows($this->result);
+	}
+	
+	// Get QueryCount
+	// Returns the number of querys that have been executed
+	public function getQueryCount() {
+		return $this->queryCount;
 	}
 	
 	// Delete
@@ -79,7 +88,7 @@ class Database {
 		// ensure params are OK
 		if (!is_numeric($id) || !$this->modelExists($model)) return false;
 		
-		return $this->query("DELETE FROM ".$this->prefix.$model." WHERE ".$model."_id=".$id." LIMIT 1");
+		return $this->query("DELETE FROM ".$this->prefix.$model." WHERE ".depluralize($model)."_id=".$id." LIMIT 1");
 	}
 	
 	// Create
@@ -134,11 +143,13 @@ class Database {
 	// Get
 	// Gets record $id of type $model
 	// Returns an array of the values
-	public function get($model, $id) {
+	public function get($model, $id=true) {
 		// ensure id is a number
 		if (is_numeric($id)) {
 			$this->query("SELECT * FROM ".$this->prefix.$model." WHERE ".depluralize($model)."_id=".$id." LIMIT 1");
 			return $this->nextRecord();
+		} else if ($id === true) {
+			return $this->query("SELECT * FROM ".$this->prefix.$model);
 		}
 		return false;
 	}

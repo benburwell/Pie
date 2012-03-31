@@ -2,6 +2,9 @@
 
 if ($record = $this->db->get($this->getModel(), $this->getRecordId())) {
 	
+	echo '<a href="'.WEBROOT.$this->getModel().'/'.$record[0].'/edit" class="button right big primary">Edit</a>';
+	echo '<h1><a href="'.WEBROOT.$this->getModel().'">'.capitalize($this->getModel()).'</a> &mdash; '.$record[1].'</h1>';
+	
 	echo '<table>';
 	
 	foreach ($record as $key => $value) {

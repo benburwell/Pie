@@ -19,10 +19,10 @@
 ################################################################################
 
 ?>
-
+			</article>
+		</div>
 		<footer>
-			<p>Copyright &copy; <?php echo date('Y'); ?></p>
-			<p>Proudly Powered by <a href="http://pie.benburwell.com/">Pie</a></p>
+			<p>Copyright &copy; <?php echo date('Y'); ?> - Proudly Powered by <a href="http://pie.benburwell.com/">Pie</a></p>
 		</footer>
 	</body>
 </html>
