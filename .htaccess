@@ -21,6 +21,8 @@ RewriteEngine On
 RewriteRule		^static							-											[L]
 
 RewriteRule		^$								/view/assembler.php							[L]
+RewriteRule		^login$							/view/assembler.php?login=1					[L]
+RewriteRule		^logout$						/action/logout.php							[L]
 RewriteRule		^([a-zA-Z0-9]+)$				/view/assembler.php?model=$1				[L]
 RewriteRule		^([a-zA-Z0-9]+)/([0-9]+)$		/view/assembler.php?model=$1&id=$2			[L]
 RewriteRule		^([a-zA-Z0-9]+)/create$			/view/assembler.php?model=$1&create=1		[L]
