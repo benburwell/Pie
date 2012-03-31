@@ -1,4 +1,4 @@
-<a href="<?php echo WEBROOT.$this->getModel(); ?>/create" class="button big primary right">New <?php echo depluralize($this->getModel()); ?></a>
+<a href="<?php echo WEBROOT.$this->getModel(); ?>/create" class="button big primary right">New <?php echo capitalize(depluralize($this->getModel())); ?></a>
 <h1><?php echo capitalize($this->getModel()); ?></h1>
 <table class="linktable">
 <?php

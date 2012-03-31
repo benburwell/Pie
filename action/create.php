@@ -32,10 +32,13 @@
 
 require_once('../core/init.php');
 
-$model = $_POST['_model'];
+$model = $_GET['_model'];
 
 // quit if no model provided
-if (!$db->modelExists($model)) goToReferer();
+if (!$db->modelExists($model)) {
+	header('Location: '.WEBROOT.$model.'/create');
+	exit();
+}
 
 $params = array();
 
@@ -47,6 +50,6 @@ foreach ($_POST as $key => $value) {
 
 $db->create($model, $params);
 
-goToReferer();
+header('Location: '.WEBROOT.$model);
 
 ?>

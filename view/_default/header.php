@@ -48,7 +48,8 @@
 							echo '<ul>';
 							
 							foreach ($models as $model) {
-								echo '<li><a href="'.WEBROOT.$model.'">'.capitalize($model).'</a></li>';
+								$active = ($this->getModel() == $model)? ' class="active"' : '';
+								echo '<li><a href="'.WEBROOT.$model.'"'.$active.'>'.capitalize($model).'</a></li>';
 							}
 							
 							echo '</ul>';

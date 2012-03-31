@@ -102,7 +102,7 @@ class Database {
 		$q = "INSERT INTO ".$this->prefix.$model." (";
 		
 		// counter variables for correct comma placement
-		$i = 0;
+		$i = 1;
 		$num = count($params);
 		
 		// create the set of field names
@@ -118,7 +118,7 @@ class Database {
 		}
 		
 		// reset counter as we will use it again
-		$i = 0;
+		$i = 1;
 		
 		// end fields, begin the values
 		$q .= ") VALUES (";
@@ -134,6 +134,8 @@ class Database {
 			// increment counter
 			$i++;
 		}
+		
+		$q .= ")";
 		
 		// finally run the query
 		return $this->query($q);

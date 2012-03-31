@@ -22,6 +22,7 @@
 @gray: @grey;
 @red: #990000;
 @blue: #0a4366;
+@highlight: #feffca;
 
 @width: 800px;
 @side-padding: 50px;
@@ -125,7 +126,7 @@ header {
 				padding-right: 20px;
 				text-decoration: none;
 				
-				&:hover {
+				&:hover, &.active {
 					//border: none;
 					background-color: darken(@red, 10%);
 					color: #ffffff;
@@ -221,9 +222,10 @@ article {
 				text-align: right;
 			}
 			
-			tr {
-				border-bottom: 1px solid @gray;
-				border-top: 1px solid @gray;
+			tr:hover {
+				background-color: @highlight;
+				//border-bottom: 1px solid @gray;
+				//border-top: 1px solid @gray;
 			}
 		}
 		

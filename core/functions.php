@@ -117,11 +117,8 @@ function deleteLinkForModel($model, $id=true) {
 		return (file_exists(ROOT.'action/delete_'.$model.'.php'))? WEBROOT.'action/delete_'.$model.'.php?_id='.$id : WEBROOT.'action/delete.php?_model='.$model.'&_id='.$id;
 }
 
-function createLinkForModel($model, $id=true) {
-	if ($id===true)
-		return (file_exists(ROOT.'action/ucreate_'.$model.'.php'))? WEBROOT.'action/create_'.$model.'.php' : WEBROOT.'action/create.php?_model='.$model;
-	else
-		return (file_exists(ROOT.'action/ucreate_'.$model.'.php'))? WEBROOT.'action/create_'.$model.'.php?_id='.$id : WEBROOT.'action/create.php?_model='.$model.'&_id='.$id;
+function createLinkForModel($model) {
+	return (file_exists(ROOT.'action/create_'.$model.'.php'))? WEBROOT.'action/create_'.$model.'.php' : WEBROOT.'action/create.php?_model='.$model;
 }
 
 function textInput($name, $value, $required=false) {
