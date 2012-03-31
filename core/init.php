@@ -30,6 +30,8 @@
 ##                                                                            ##
 ################################################################################
 
+define('PIE_VERSION', '0.1a');
+
 // bring in all required classes
 require_once('classes/database.class.php');
 require_once('classes/page.class.php');

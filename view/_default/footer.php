@@ -29,7 +29,7 @@
 					<a href="<?php echo WEBROOT; ?>login">Login</a>
 				<?php endif; ?>
 			</nav>
-			<p>Copyright &copy; <?php echo date('Y'); ?> - Proudly Powered by <a href="http://pie.benburwell.com/">Pie</a></p>
+			<p>Copyright &copy; <?php echo date('Y'); ?> - Proudly Powered by <a href="http://pie.benburwell.com/">Pie</a> v. <?php echo PIE_VERSION; ?></p>
 		</footer>
 		<script type="text/javascript">
 		<?php
