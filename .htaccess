@@ -18,12 +18,10 @@
 
 RewriteEngine On
 
-RewriteBase		/pie/
+RewriteRule		^static							-											[L]
 
-RewriteRule		^static							-												[L]
-
-RewriteRule		^$								/pie/view/assembler.php							[L]
-RewriteRule		^([a-zA-Z0-9]+)$				/pie/view/assembler.php?model=$1				[L]
-RewriteRule		^([a-zA-Z0-9]+)/([0-9]+)$		/pie/view/assembler.php?model=$1&id=$2			[L]
-RewriteRule		^([a-zA-Z0-9]+)/create$			/pie/view/assembler.php?model=$1&create=1		[L]
-RewriteRule		^([a-zA-Z0-9]+)/([0-9]+)/edit$	/pie/view/assembler.php?model=$1&id=$2&update=1	[L]
+RewriteRule		^$								/view/assembler.php							[L]
+RewriteRule		^([a-zA-Z0-9]+)$				/view/assembler.php?model=$1				[L]
+RewriteRule		^([a-zA-Z0-9]+)/([0-9]+)$		/view/assembler.php?model=$1&id=$2			[L]
+RewriteRule		^([a-zA-Z0-9]+)/create$			/view/assembler.php?model=$1&create=1		[L]
+RewriteRule		^([a-zA-Z0-9]+)/([0-9]+)/edit$	/view/assembler.php?model=$1&id=$2&update=1	[L]
