@@ -18,7 +18,7 @@ article table.linktable tr:hover{background-color:#feffca;}
 article table.recordtable{border:none;}article table.recordtable th{width:100px;background-color:#ffffff;color:#000000;font-weight:200;text-align:right;border:none;vertical-align:top;}article table.recordtable th.required{font-weight:bold;}
 article table.recordtable th.required:before{content:'* ';color:#990000;font-weight:bold;}
 article table.recordtable td{border:none;}
-article table input{font-size:15px;font-family:"Helvetica Neue","Helvetica","Arial",sans-serif;font-weight:200;padding:5px;}article table input[type=text],article table input[type=password]{width:500px;margin-bottom:10px;}
-article table input[type=checkbox]{margin:0;padding:20px;}
+article table input{font-size:15px;font-family:"Helvetica Neue","Helvetica","Arial",sans-serif;font-weight:200;padding:5px;width:500px;margin-bottom:10px;}article table input[type=checkbox]{margin:0;padding:20px;width:auto;margin-bottom:auto;}
+article table select,article table option{font-size:16px;font-family:"Helvetica Neue","Helvetica","Arial",sans-serif;}
 article table textarea{width:500px;height:150px;padding:5px;font-family:"Helvetica Neue","Helvetica","Arial",sans-serif;font-size:15px;font-weight:200;}
 footer{margin-top:20px;text-align:center;font-size:12px;font-weight:200;color:#666666;width:800px;margin-left:auto;margin-right:auto;text-shadow:0 1px #ffffff;margin-bottom:50px;}footer nav#account{font-size:14px;margin-bottom:10px;}
