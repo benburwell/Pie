@@ -203,7 +203,7 @@ class Database {
 	// UserExists
 	// Returns the boolean valie of whether $username exists
 	public function userExists($username) {
-		if ($this->query("SELECT * FROM ".$this->prefix."_users WHERE username='".$username."'") == 1) {
+		if ($this->query("SELECT * FROM ".$this->prefix."_users WHERE name='".$username."'") == 1) {
 			$record = $this->nextRecord();
 			return $record['user_id'];
 		}

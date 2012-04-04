@@ -21,6 +21,14 @@ if ($reset && $user_id = $db->userExists($username)) {
 	}
 }
 
+//$u = new User($db, 1);
+//$u->generatePasswordResetKey();
+
+
+//print_r($_POST);
+
+//echo $reset;
+
 header("Location: ".WEBROOT."login");
 
 ?>
