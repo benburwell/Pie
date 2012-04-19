@@ -7,7 +7,7 @@ if ($this->db->get($this->getModel()) > 0) {
 	while ($record = $this->db->nextRecord()) {
 		echo '<tr>';
 		
-		echo '<td>'.$record[1].'</td>';
+		echo '<td><a href="'.WEBROOT.$this->getModel().'/'.$record[0].'">'.$record[1].'</a></td>';
 
 		echo '<td class="actions"><div class="button-group">';
 		echo '<a href="#" class="button danger" onclick="verifyUrl(\''.deleteLinkForModel($this->getModel()).'&_id='.$record[0].'\');">Delete</a> ';
