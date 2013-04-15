@@ -1,13 +1,8 @@
-PIE
-
-Simple PHP database-driven website framework
+Pie: a simple PHP database-driven website framework
+===================================================
 
 by Ben Burwell @bburwell
 http://www.benburwell.com/
-
-============================================
-Version 0.1
-============================================
 
 Features:
 * Automagic CRUD
@@ -17,7 +12,7 @@ Features:
 * Powerful library of built-in functions you can implement in custom views
 
 Installation:
-* Copy PIE to a directory on your web server
+* Copy Pie to a directory on your web server
 * Run http://server/pie/install and follow setup instructions
 * Create your tables using the automagically-recognized format
 * You now have a fully featured site!
@@ -25,4 +20,4 @@ Installation:
 
 Architecture:
 * The table name is the plural of the object name
-* Views are in /view/__object__/ -- There are four types of view files: header, footer, record, and default.
+* Views are in `/view/**object**/` -- There are four types of view files: header, footer, record, and default.
